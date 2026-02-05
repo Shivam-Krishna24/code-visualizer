@@ -1,16 +1,209 @@
-# React + Vite
+Code Execution & Array Traversal Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A step-by-step code execution visualizer built to make program execution, loops, and array traversal visible and understandable.
 
-Currently, two official plugins are available:
+This project is a controlled educational execution engine, not a full compiler or interpreter.
+It prioritizes clarity, determinism, and visual correctness over language completeness.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 What This Project Does
 
-## React Compiler
+Instead of executing real JavaScript, this tool:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Parses code into explicit execution steps
 
-## Expanding the ESLint configuration
+Executes one micro-step at a time
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Maintains an explicit memory model
+
+Visually renders:
+
+variable creation & mutation
+
+loop execution flow
+
+array traversal with active index highlighting
+
+This allows learners to see how code runs internally, not just the final output.
+
+🎯 Why This Project Exists
+
+Many beginners struggle because:
+
+Code executes too fast
+
+Memory changes are invisible
+
+Loops feel abstract
+
+Array traversal is hard to visualize
+
+This project slows execution down and makes program state visible at every step.
+
+🏗️ Architecture Overview
+1️⃣ Parser (createSteps)
+
+Reads code as plain text
+
+Supports a restricted grammar
+
+Converts code into structured execution steps (lines, loops)
+
+2️⃣ Execution Engine (executeLine)
+
+Executes exactly one step per action
+
+Updates a controlled memory object
+
+Handles:
+
+variable declarations
+
+assignments
+
+array reads (arr[i])
+
+Example memory state:
+
+{
+  sum: { type: "int", value: 6 },
+  i:   { type: "int", value: 3 },
+  arr: { type: "int", value: [1,2,3,4] }
+}
+
+3️⃣ Loop Execution Model
+
+Loops are not executed normally
+
+Each loop is broken into:
+
+initialization
+
+condition check
+
+body execution
+
+increment
+
+Each part is executed as a separate visual step
+
+4️⃣ UI (React)
+
+Code editor (left)
+
+Memory visualization (right)
+
+Execution controls:
+
+Start
+
+Next step
+
+✨ Key Features
+
+Step-by-step execution (debugger-like)
+
+Explicit memory visualization
+
+Array traversal with live index highlighting
+
+Deterministic, predictable behavior
+
+Scales well for large arrays
+
+Designed specifically for learning DSA fundamentals
+
+⚠️ Intentional Limitations
+
+This is not a general-purpose language interpreter.
+
+Supported
+
+Variable declarations (int, let, var)
+
+Assignments
+
+Array reads (arr[i])
+
+for loops in strict format:
+
+for (int i = 0; i < 5; i = i + 1) {
+  sum = sum + arr[i];
+}
+
+Not Supported (by design)
+
+i++, +=, --
+
+if / else, while
+
+Nested loops
+
+Array writes (arr[i] = x)
+
+Functions or recursion
+
+Dynamic loop bounds (i < n)
+
+Complex expressions
+
+Full error reporting (planned)
+
+These constraints exist to guarantee:
+
+deterministic execution
+
+clean visualization
+
+zero hidden behavior
+
+🧠 Design Philosophy
+
+“Clarity over completeness.”
+
+Every feature exists only if it can be:
+
+executed deterministically
+
+visualized cleanly
+
+explained step-by-step
+
+🛠️ Tech Stack
+
+React
+
+JavaScript
+
+Custom execution engine (no real JS execution)
+
+Deployed on Vercel
+
+🔮 Possible Extensions
+
+Error reporting
+
+if execution visualization
+
+Array write support
+
+Auto-play / pause
+
+Step backward
+
+Nested loops & 2D arrays
+
+Recursion stack visualization
+
+🧑‍💻 Who This Is For
+
+DSA learners
+
+Students learning loops & arrays
+
+Educators explaining execution flow
+
+Recruiters evaluating system-thinking projects
+
+🏁 One-Line Summary
+
+A visual execution engine that models program state and explains loops and array traversal step by step.
