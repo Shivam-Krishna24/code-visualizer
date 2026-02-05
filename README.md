@@ -1,61 +1,73 @@
-#🧠 Code Execution & Array Traversal Visualizer#
+🧠 CODE EXECUTION & ARRAY TRAVERSAL VISUALIZER
 
-A step-by-step code execution visualizer designed to make program execution visible, especially for loops and array traversal.
+A STEP-BY-STEP CODE EXECUTION VISUALIZER FOR LEARNING LOOPS & ARRAY TRAVERSAL
 
-This project is a controlled educational execution engine, not a full compiler or interpreter.
-It prioritizes clarity, determinism, and visual correctness over language completeness.
+# WHAT THIS PROJECT IS
 
-🚀 What This Project Does
+This project is a controlled educational execution engine that visually explains how code runs, instead of only showing final output.
 
-Instead of executing real JavaScript, this tool:
-
-Parses code into explicit execution steps
-
-Executes one micro-step at a time
-
-Maintains an explicit memory model
-
-Visually renders:
+It focuses on making:
 
 variable creation & mutation
 
-loop execution flow
+loop execution
 
-array traversal with active index highlighting
+array traversal
 
-👉 Learners can see how code runs internally, not just the final output.
+memory state changes
 
-🎯 Why This Project Exists
+visible and understandable.
 
-Many beginners struggle because:
+# WHY THIS PROJECT EXISTS
 
-Code runs too fast
+Most beginners struggle because:
 
-Memory changes are invisible
+code runs too fast
 
-Loops feel “magical”
+memory changes are invisible
 
-Array traversal is abstract
+loops feel magical
 
-This project slows execution down and makes program state visible at every step.
+array traversal is abstract
 
-🏗️ Architecture Overview
-🔹 1. Parser (createSteps)
+This project slows execution down and turns it into visual steps.
 
-Reads code as plain text
+# HOW IT WORKS (HIGH-LEVEL)
 
-Supports a restricted grammar
+This is NOT a full compiler or interpreter.
 
-Converts code into structured execution steps
-(line, loop, etc.)
+Instead:
 
-🔹 2. Execution Engine (executeLine)
+code is parsed line-by-line
 
-Executes exactly one step per click
+converted into explicit execution steps
 
-Updates a controlled memory object
+executed one micro-step at a time
 
-Handles:
+memory is tracked manually and visualized
+
+This guarantees:
+
+deterministic execution
+no hidden behavior
+perfect sync with visuals
+
+# ARCHITECTURE OVERVIEW
+## 1. PARSER (createSteps)
+
+reads code as plain text
+
+supports a restricted grammar
+
+converts code into structured steps
+
+## 2. EXECUTION ENGINE (executeLine)
+
+executes exactly one step per click
+
+updates a controlled memory object
+
+handles:
 
 variable declarations
 
@@ -63,7 +75,7 @@ assignments
 
 array reads (arr[i])
 
-Example Memory State:
+Example memory state:
 
 {
   sum: { type: "int", value: 6 },
@@ -71,9 +83,9 @@ Example Memory State:
   arr: { type: "int", value: [1, 2, 3, 4] }
 }
 
-🔹 3. Loop Execution Model
+## 3. LOOP EXECUTION MODEL
 
-Loops are not executed normally
+Loops are NOT executed normally.
 
 Each loop is broken into:
 
@@ -85,127 +97,76 @@ body execution
 
 increment
 
-Each part executes as a separate visual step
+Each part runs as a separate visual step.
 
-This makes loop execution fully explainable and visualizable.
+## 4. UI (REACT)
 
-🔹 4. UI (React)
+LEFT PANEL → Code editor
 
-Left panel: Code editor
+RIGHT PANEL → Memory visualization
 
-Right panel: Memory visualization
+CONTROLS → Start | Next Step
 
-Controls:
+# KEY STRENGTHS
 
-▶️ Start
+✔ Step-by-step execution (debugger-like)
+✔ Explicit memory visualization
+✔ Array traversal with active index glow
+✔ Deterministic & predictable behavior
+✔ Designed for learning DSA fundamentals
 
-⏭️ Next step
+# INPUT LIMITATIONS (IMPORTANT)
 
-✨ Key Features
+These are INTENTIONAL design choices.
 
-🧩 Step-by-step execution (debugger-like)
+## SUPPORTED SYNTAX
 
-🧠 Explicit memory visualization
+variable declarations (int, let, var)
 
-🔥 Array traversal with live index glow
+assignments
 
-🔒 Deterministic, predictable behavior
+array reads (arr[i])
 
-📈 Scales well for large arrays
-
-🎓 Designed for learning DSA fundamentals
-
-⚠️ Intentional Limitations
-
-This is not a general-purpose language interpreter.
-
-✅ Supported Syntax
-
-Variable declarations (int, let, var)
-
-Assignments
-
-Array reads (arr[i])
-
-for loops in strict format only:
+for loops in STRICT FORMAT ONLY:
 
 for (int i = 0; i < 5; i = i + 1) {
   sum = sum + arr[i];
 }
 
-❌ Not Supported (By Design)
+## NOT SUPPORTED (BY DESIGN)
 
-i++, +=, --
+✖ i++, +=, --
+✖ if / else, while
+✖ nested loops
+✖ array writes (arr[i] = x)
+✖ functions or recursion
+✖ dynamic loop bounds (i < n)
+✖ complex expressions
 
-if / else, while
-
-Nested loops
-
-Array writes (arr[i] = x)
-
-Functions or recursion
-
-Dynamic loop bounds (i < n)
-
-Complex expressions
-
-Full error reporting (planned)
-
-👉 These constraints exist to guarantee:
-
-deterministic execution
-
+These constraints exist to ensure:
+clarity
+determinism
 clean visualization
 
-zero hidden behavior
+# DESIGN PHILOSOPHY
 
-🧠 Design Philosophy
-Clarity over completeness.
+“CLARITY OVER COMPLETENESS.”
 
 Every feature exists only if it can be:
 
-executed deterministically
-
-visualized cleanly
-
 explained step-by-step
 
-🛠️ Tech Stack
+visualized accurately
 
-⚛️ React
+executed predictably
 
-🟨 JavaScript
+# TECH STACK
 
-🧩 Custom execution engine (no real JS execution)
+• React
+• JavaScript
+• Custom execution engine
+• Deployed on Vercel
 
-☁️ Deployed on Vercel
-
-🔮 Possible Extensions
-
-Error reporting
-
-if execution visualization
-
-Array write support
-
-Auto-play / pause
-
-Step backward
-
-Nested loops & 2D arrays
-
-Recursion stack visualization
-
-🧑‍💻 Who This Is For
-
-DSA learners
-
-College students
-
-Educators explaining loops & arrays
-
-Recruiters evaluating system-thinking projects
-
-🏁 One-Line Summary
+# ONE-LINE SUMMARY
 
 A visual execution engine that models program state and explains loops and array traversal step by step.
